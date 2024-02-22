@@ -4,9 +4,9 @@ public class Player {
     private String name;
     private int counter;
 
-    public Player(String name, int counter) {
+    public Player(String name) {
         this.name = name;
-        this.counter = counter;
+        this.counter = 0;
     }
 
     public String getName() {
@@ -15,5 +15,9 @@ public class Player {
 
     public int getCounter() {
         return counter;
+    }
+
+    public void addToCounter(int points) {
+        counter += points;
     }
 }
