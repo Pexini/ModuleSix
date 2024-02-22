@@ -1,5 +1,6 @@
 package org.example.Middle.TicTacToe;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -37,9 +38,9 @@ public class Game {
     public void printBoard() {
         System.out.println(" 0 1 2");
         for (int i = 0; i < 3; i++) {
-            System.out.println(i + " ");
+            System.out.print(i + " ");
             for (int j = 0; j < 3; j++) {
-                System.out.println(board[i][j] + " ");
+                System.out.print(board[i][j] + " ");
             }
             System.out.println();
         }
@@ -50,23 +51,40 @@ public class Game {
         boolean validMove = false;
 
         while (!validMove) {
-            System.out.println(currentPlayer.getName() + ", Введите номер строки (0-3): ");
-            int row = scanner.nextInt();
-            System.out.println(currentPlayer.getName() + ", Введите номер столбца (0-3): ");
-            int col = scanner.nextInt();
+            if (currentPlayer == player1) {
+                System.out.print(currentPlayer.getName() + ", Введите номер строки (0-2): ");
+                int row = scanner.nextInt();
+                System.out.print(currentPlayer.getName() + ", Введите номер столбца (0-2): ");
+                int col = scanner.nextInt();
 
-            if (isValidMove(row, col)) {
-                board[row][col] = currentPlayer.getSymbol();
-                validMove = true;
+                if (isValidMove(row, col)) {
+                    board[row][col] = currentPlayer.getSymbol();
+                    validMove = true;
+                } else {
+                    System.out.print("Некорректный ход, попробуйте снова");
+                }
             } else {
-                System.out.println("Некорректный ход, попробуйте снова");
+                makeComputerMove();
+                validMove = true;
             }
         }
     }
 
+
     private boolean isValidMove(int row, int col) {
         return row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == ' ';
 
+    }
+
+    private void makeComputerMove() {
+        Random random = new Random();
+        int row, col;
+        do {
+            row = random.nextInt(3);
+            col = random.nextInt(3);
+        } while (!isValidMove(row, col));
+        System.out.println(player2.getName() + " делает ход в " + row + " , " + col);
+        board[row][col] = player2.getSymbol();
     }
 
     private boolean chekForWinner() {
