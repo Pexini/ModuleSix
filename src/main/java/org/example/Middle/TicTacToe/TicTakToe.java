@@ -14,7 +14,7 @@ public class TicTakToe {
         System.out.println(" Привет " + playerName + " меня зовут " + compName);
 
         Player player1 = new Player(playerName, 'X');
-        Player player2 = new Player(compName, 'Y');
+        Player player2 = new Player(compName, '0');
 
         Game game = new Game(player1,player2);
         game.playGame();

@@ -9,6 +9,7 @@ public class Game {
     private Player player2;
     private Player currentPlayer;
 
+
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
@@ -29,6 +30,7 @@ public class Game {
         }
         printBoard();
         if (gameover) {
+            switchPlayer();
             System.out.print(currentPlayer.getName() + " Победил!");
         } else {
             System.out.println("Ничья");
@@ -83,23 +85,28 @@ public class Game {
             row = random.nextInt(3);
             col = random.nextInt(3);
         } while (!isValidMove(row, col));
-        System.out.println(player2.getName() + " делает ход в " + row + " , " + col);
-        board[row][col] = player2.getSymbol();
+        System.out.println(currentPlayer.getName() + " делает ход в " + row + " , " + col);
+        board[row][col] = currentPlayer.getSymbol();
     }
 
     private boolean chekForWinner() {
         for (int i = 0; i < 3; i++) {
-            if (board[i][0] == currentPlayer.getSymbol() && board[i][1] == currentPlayer.getSymbol() && board[i][2] == currentPlayer.getSymbol() || board[0][i] == currentPlayer.getSymbol() && board[1][i] == currentPlayer.getSymbol() && board[2][i] == currentPlayer.getSymbol()) {
+            if ((board[i][0] == currentPlayer.getSymbol() && board[i][1] == currentPlayer.getSymbol() && board[i][2] == currentPlayer.getSymbol()) ||
+                    (board[0][i] == currentPlayer.getSymbol() && board[1][i] == currentPlayer.getSymbol() && board[2][i] == currentPlayer.getSymbol())) {
                 return true;
             }
         }
-        if (board[0][0] == currentPlayer.getSymbol() && board[1][1] == currentPlayer.getSymbol() && board[2][2] == currentPlayer.getSymbol() || board[0][2] == currentPlayer.getSymbol() && board[1][1] == currentPlayer.getSymbol() && board[2][0] == currentPlayer.getSymbol()) {
-            return true;
+        if ((board[0][0] == currentPlayer.getSymbol() && board[1][1] == currentPlayer.getSymbol() && board[2][2] == currentPlayer.getSymbol()) ||
+                (board[0][2] == currentPlayer.getSymbol() && board[1][1] == currentPlayer.getSymbol() && board[2][0] == currentPlayer.getSymbol())) {
+                return true;
         }
         return false;
     }
 
+
     private void switchPlayer() {
+
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
+
     }
 }
