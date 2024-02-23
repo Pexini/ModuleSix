@@ -42,6 +42,7 @@ public class Game {
         int totalSum = player.getCounter();
         if (totalSum == computerNumber) {
             System.out.println(player.getName() + " выиграл! Сумма ваших чисел " + totalSum);
+
             System.out.println("Я загадал число " + computerNumber);
             printResult();
             return true;
