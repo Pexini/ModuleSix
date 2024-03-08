@@ -9,6 +9,10 @@ public class Player {
         this.counter = 0;
     }
 
+    public Player() {
+
+    }
+
     public String getName() {
         return name;
     }
