@@ -1,4 +1,4 @@
-package org.example.Hard;
+package org.example.Hard.Blackjack;
 
  class Card {
     private final String rank;

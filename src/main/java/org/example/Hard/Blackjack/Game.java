@@ -1,4 +1,4 @@
-package org.example.Hard;
+package org.example.Hard.Blackjack;
 
 public class Game {
     public static void main(String[] args) {
